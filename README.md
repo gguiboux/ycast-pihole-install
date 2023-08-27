@@ -10,7 +10,7 @@ On se laisse guider, on choisit une ip fixe (ou router modem l'assigne automatiq
 On choisi le dns par défaut de google 
 On fait yes à tout le reste
 
-#config-pihole:
+# config-pihole:
 
 On créé une conf spécifique pour la redirection des requêtes de notre ampli marantz:
 sudo nano /etc/dnsmasq.d/vtuner.conf
@@ -26,7 +26,7 @@ On regarde si Ok:
 
 pihole status
 
-#ycast
+# ycast
 
 Les librairies :
 
@@ -38,7 +38,7 @@ Ycast :
 sudo apt install python3-pip
 sudo pip3 install ycast
 
-#config-ycast:
+# config-ycast:
 
 on ajoute un user: 
 sudo useradd ycast
@@ -49,7 +49,7 @@ sudo nano /etc/ycast/stations.yml
 on choisi ycast comme propriétaire:
 sudo chown ycast:ycast /etc/ycast/stations.yml
 
-#ycast-service
+# ycast-service
 
 Voici la config qui permet de lancer le service ycast avec le user pointant sur le fichier stations.yml
 
@@ -97,13 +97,19 @@ On relance les services :
 sudo service lighttpd force-reload
 systemctl status lighttpd.service
 
-#router
+# le demon
+
+Oubliez pas de relancer le demon à chaque changement dans les confs, services :
+
+systemctl daemon-reload
+
+# router
 
 Il faut absolument aller dans la conf dns (dhcp) de son router et configurer comme dns principal l'adresse de notre raspberry (192.168.1.51)
 
 Restart toutes les machines sur le réseau (ampli, raspberry pi) 
 
-#les stations (stations.yml)
+# les stations (stations.yml)
 
 Attention à l'indentation du yml 
 
